@@ -3,7 +3,7 @@
 An Arduino project to monitor temperature and humidity to a web
 server, all while having gummi bears with lights inside.
 
-![Example](/Schematic/schema_sketch.gif)
+![Schematic](Schematic/schema_sketch.gif)
 
 # Circuitry
 
