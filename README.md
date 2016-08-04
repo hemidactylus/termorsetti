@@ -15,6 +15,6 @@ A library is required: DHT library (https://github.com/adafruit/DHT-sensor-libra
 
 # Status
 
-![Orsetti](yunCode/web_skeleton/images/bear.gif)
+![Orsetti](yunCode/www_orsetti/images/bear.gif)
 
 It is a work in progress

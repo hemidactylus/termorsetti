@@ -44,7 +44,8 @@
 <?php
         $date=exec("cat /root/orsetti/last_date");
         print "Last update: $date";
-?>
+?><br>
+        <a href="https://github.com/hemidactylus/termorsetti">TermOrsetti on github</a>
 	</font>
 </p>
 </body>
