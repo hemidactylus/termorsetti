@@ -2,7 +2,8 @@
 <head>
 	<title>Termorsetti Local Page</title>
 	<link rel="shortcut icon" href="images/orsetti_icon.gif" />
-
+        <meta http-equiv="refresh" content="30">
+        <meta http-equiv="expires" content="0">
 </head>
 <body bgcolor="#b00040">
 <div align="center"><img src="images/bear.gif" height="200px" style="vertical-align:middle"><br><font size="+3">TermOrsetti</font></div>
@@ -37,6 +38,14 @@
 ?></td>
     </tr>
     </table>
+</p>
+<p align="center">
+	<font size="-1">
+<?php
+        $date=exec("cat /root/orsetti/last_date");
+        print "Last update: $date";
+?>
+	</font>
 </p>
 </body>
 </html>

@@ -1,0 +1,3 @@
+# This should be the /www/orsetti directory of the Yun
+# For this to work, php must be opkg-installed
+
