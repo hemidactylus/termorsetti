@@ -14,6 +14,7 @@
         <th>Temp Inside</th>
         <th>Temp Inside (Dig)</th>
         <th>Rel. humidity (Dig)</th>
+	<th>Heat Index</th>
     </tr>
     <tr>
 <td>
@@ -35,6 +36,11 @@
 <?php
         $humi0=exec("cat /root/orsetti/h0");
         print "$humi0 &#37;";
+?></td>
+<td>
+<?php
+        $hind=exec("cat /root/orsetti/hi");
+        print "$hind &#8451;";
 ?></td>
     </tr>
     </table>
