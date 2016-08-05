@@ -9,7 +9,31 @@ DHT dht(DHTPIN, DHTTYPE);
 
 //#define DEBUG
 
-const int ledPins[3]={2,3,4}; // green, yellow, red
+#define INERT_TEMP_DIFFERENCE (1.2)
+
+const int ledPins[3]={3,4,2}; // red, yellow, green
+
+void updateLeds(int r, int y, int g){
+  digitalWrite(ledPins[0],r);
+  digitalWrite(ledPins[1],y);
+  digitalWrite(ledPins[2],g);
+  return;
+}
+
+void setOneLed(int col){
+  switch (col){
+    case 0:
+      updateLeds(1,0,0);
+      break;
+    case 1:
+      updateLeds(0,1,0);
+      break;
+    case 2:
+      updateLeds(0,0,1);
+      break;
+  }
+  return;
+}
 
 void setup() {
   #ifdef DEBUG
@@ -22,31 +46,35 @@ void setup() {
   // initialise the humidity-temperature digital sensor
   dht.begin();
   // initialise os interaction
-  init_OS();
+  waitForLinux();
+  // initialise reading containers
+  initReadings(millis());
+  // display a begin sequence
+  makeAShow();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  for(int i=0;i<3;i++){
-    digitalWrite(ledPins[(i+2)%3],LOW);
-    digitalWrite(ledPins[i],HIGH);
-    delay(662);
+  unsigned long int epoch=millis();
+  handleReadings(epoch);
+  // decide what light to turn on
+  float tempDiff=(readings[1].value-readings[0].value); // internal - external
+  if (abs(tempDiff)<INERT_TEMP_DIFFERENCE){
+    setOneLed(1);
+  }else{
+    if (tempDiff>0){ // internal is higher
+      setOneLed(2);
+    }else{ // internal is lower
+      setOneLed(0);
+    }
   }
-  // temp hum/temp
-  float digHum = dht.readHumidity();
-  float digTem = dht.readTemperature()-2.0;
+  delay(100);
+}
 
-  float temperature0=read_analog_temperature(0);
-  delay(12);
-  float temperature1=read_analog_temperature(1);
-
-  logReading(temperature0,0);
-  delay(1000);
-  logReading(temperature1,1);
-  delay(1000);
-  logReading(digTem,2);
-  delay(1000);
-  logReading(digHum,3);
-  delay(1000);
+void makeAShow(){
+  for(int cnt=0;cnt<24;cnt++){
+    updateLeds(!!(cnt&4),!!(cnt&2),!!(cnt&1));
+    delay(500);
+  }
+  updateLeds(0,0,0);
 }
 

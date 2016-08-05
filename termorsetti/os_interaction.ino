@@ -2,11 +2,8 @@
 #include <Bridge.h>
 #include <Process.h>
 
-void init_OS(){
-  Bridge.begin();
-}
-
 void logReading(float rValue, int rType){
+  updateLeds(1,1,1);
   #ifdef DEBUG
     Serial.println("lR");
   #endif
@@ -18,7 +15,30 @@ void logReading(float rValue, int rType){
   #endif
   Process p,q;
   p.runShellCommand(updMessage);
-  q.runShellCommand(shellDateUpdater);
-  delay(FILE_WRITE_DELAY);
   return;
 }
+
+void waitForLinux(){
+  #ifdef DEBUG
+  Serial.println("start wFL");
+  #endif
+  Serial1.begin(115200); // get ready to hear from the console
+  updateLeds(1,0,0);
+  delay(1000);
+  do {
+    while (Serial1.available() > 0) {
+      Serial1.read();
+    }
+    updateLeds(1,1,0);
+    delay(500);
+    updateLeds(1,0,0);
+    delay(500);
+  } while (Serial1.available()>0);
+  // part 2: bridge
+  Bridge.begin();
+  #ifdef DEBUG
+  Serial.println("end wFL");
+  #endif
+  updateLeds(0,0,0);
+}
+
