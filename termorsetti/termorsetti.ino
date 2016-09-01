@@ -11,7 +11,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 #define INERT_TEMP_DIFFERENCE (1.2)
 
-const int ledPins[3]={3,4,2}; // red, yellow, green
+const int ledPins[3]={4,3,2}; // red, yellow, green
 
 void updateLeds(int r, int y, int g){
   digitalWrite(ledPins[0],r);
