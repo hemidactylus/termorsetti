@@ -24,7 +24,6 @@ FieldConverters={
     }
 
 def main():
-    answers=[]
     loggerCollection=gimme_db(verbose=False)[collectionName]
     requrl='http://93.50.192.43/orsetti/api.php'
     req=requests.get(requrl)
