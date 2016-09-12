@@ -34,7 +34,7 @@ def main(daysBack=2):
     
     # plotting
     fig,ax=plt.subplots(len(FIELDS),1)
-    for fax,flist,xlegend,ylabel in zip(ax,FIELDS,[False,True],['Temperature (^C)','Rel. Humidity (%%)']):
+    for fax,flist,xlegend,ylabel in zip(ax,FIELDS,[True,True],['Temperature (^C)','Rel. Humidity (%%)']):
         for fname,flabel in flist.iteritems():
             df[fname].plot(style='o',label=flabel,ax=fax)
         fax.legend()

@@ -23,6 +23,8 @@ Required hardware:
 
 Wires and a means to protect one thermistor from rain, etc (e.g. sealed inside a non-inflated balloon with some hygroscopic grains thrown in for good measure)
 
+![LiveOrsetti](Schematic/real_orsetti.png)
+
 # Sketch
 
 A library is required: DHT library (https://github.com/adafruit/DHT-sensor-library)
