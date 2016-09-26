@@ -4,6 +4,7 @@
 from datetime import datetime, timedelta
 import pandas as pd
 import matplotlib.pyplot as plt
+import sys
 
 from mongo_settings import gimme_db
 # it is expected that gimme_db returns a PyMongo database object. Implement it your way, with your auth and so on.
@@ -43,4 +44,26 @@ def main(daysBack=2):
     plt.show()
 
 if __name__=='__main__':
-    main()
+    _help='''
+        Usage: ./orsettiplotter.py [-t NUMDAYS]
+    '''
+    
+    showHelp=False
+    daysBack=2
+    
+    if len(sys.argv)>1:
+        alist=sys.argv[1:]
+        while alist:
+            qarg=alist.pop(0)
+            if qarg=='-t':
+                if alist:
+                    daysBack=float(alist.pop(0))
+                else:
+                    showHelp=True
+            else:
+                print 'Unrecognised command line argument: %s' % qarg
+
+    if showHelp:
+        print _help
+    else:
+        main(daysBack)
