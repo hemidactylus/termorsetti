@@ -3,7 +3,7 @@
 An Arduino project to monitor temperature and humidity to a web
 server, all while having gummi bears with lights inside.
 
-![Schematic](Schematic/schema_sketch.gif)
+![Schematic](Schematic/schema1_bb.png)
 
 # Circuitry
 
@@ -20,6 +20,8 @@ Required hardware:
 * 3 10kOhm resistors
 
 * 3 220 Ohm resistors
+
+* An analog water-level sensor
 
 Wires and a means to protect one thermistor from rain, etc (e.g. sealed inside a non-inflated balloon with some hygroscopic grains thrown in for good measure)
 
@@ -48,4 +50,4 @@ On the openWrt installation one must do as described in http://bradsduino.blogsp
 
 ![Orsetti](yunCode/www_orsetti/images/bear.gif)
 
-It is a work in progress
+It is a work in progress. The code is not very clean nor maintainable, but the heck it works.
