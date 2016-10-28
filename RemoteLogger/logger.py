@@ -21,6 +21,7 @@ FieldConverters={
         'temp_ext': float,
         'heatindex': float,
         'humidity': float,
+        'wetfloor': float,
     }
 
 def main():

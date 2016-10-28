@@ -9,6 +9,11 @@ float temperature_from_reading(int reading,float delta){
   return delta-25.58 + 0.1097*reading-2.1578e-05*pow(reading,2.0);
 }
 
+float read_rain_input(){
+  int rainQuids=analogRead(rainAnalogIn);
+  return rainQuids*1.0/1024.0;
+}
+
 float celsius(float fah){
   return (fah-32.0)/1.8;
 }
@@ -42,8 +47,8 @@ void handleReadings(unsigned long int epoch){
     return;
   }
   int readingChanged=-1;
-  for(int ire=0;ire<4;ire++){
-    if ((epoch-readings[ire].birth)>DELAY_BETWEEN_MEASUREMENTS){
+  for(int ire=0;ire<6;ire++){
+    if ((ire!=4)&&((epoch-readings[ire].birth)>DELAY_BETWEEN_MEASUREMENTS)){
       // proceed with this measurement
       float newVal;
       updateLeds(1,0,1);
@@ -57,6 +62,9 @@ void handleReadings(unsigned long int epoch){
           break;
         case 3:
           newVal=dht.readHumidity();
+          break;
+         case 5:
+          newVal=read_rain_input();
           break;
       }
       readingChanged=ire;

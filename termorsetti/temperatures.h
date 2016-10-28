@@ -1,7 +1,8 @@
 #ifndef _LIB_TEMPERATURES
 #define _LIB_TEMPERATURES
 
-const int tempAnalogIns[2]={A0,A5}; // long-wire, short-wire respectively (external, internal)
+const int tempAnalogIns[3]={A0,A5}; // long-wire, short-wire respectively (external, internal)
+const int rainAnalogIn=A3; // wetness (rain-inside)
 float temperatureDeltas[2]={0.15,-0.6}; // additive adjustments to the sensors (calibration=both in the same place, make them yield same T)
 const float digitalTempDelta=-1.6; // additive adjustment to the digital temperature sensor
 
@@ -18,7 +19,7 @@ struct sensorReading{
   unsigned long int birth;
 };
 
-sensorReading readings[5];
+sensorReading readings[6]; // the last is rain-inside
 
 unsigned long int lastMeasurementEpoch;
 

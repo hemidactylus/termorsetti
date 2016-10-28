@@ -21,7 +21,12 @@ FIELDS=[
             {
                 'humidity': 'Relative Humidity',
             },
+            {
+                'wetfloor': 'Wet Floor',
+            },
         ]
+HASLEGEND=[True,True,True]
+PLOTTITLE=['Temperature (^C)','Rel. Humidity (%%)','Wet Floor']
 
 def main(daysBack=2):
     # loading data from DB
@@ -34,8 +39,12 @@ def main(daysBack=2):
     df=df.set_index('date')
     
     # plotting
-    fig,ax=plt.subplots(len(FIELDS),1)
-    for fax,flist,xlegend,ylabel in zip(ax,FIELDS,[True,True],['Temperature (^C)','Rel. Humidity (%%)']):
+    axTemp = plt.subplot2grid((2,2), (0,0), colspan=2)
+    axHum = plt.subplot2grid((2,2), (1, 0))
+    axWet = plt.subplot2grid((2,2), (1, 1))
+    ax=[axTemp,axHum,axWet]
+    
+    for fax,flist,xlegend,ylabel in zip(ax,FIELDS,HASLEGEND,PLOTTITLE):
         for fname,flabel in flist.iteritems():
             df[fname].plot(style='o',label=flabel,ax=fax)
         fax.legend()
