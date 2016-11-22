@@ -3,7 +3,7 @@
 
 const int tempAnalogIns[3]={A0,A5}; // long-wire, short-wire respectively (external, internal)
 const int rainAnalogIn=A3; // wetness (rain-inside)
-float temperatureDeltas[2]={0.15,-0.6}; // additive adjustments to the sensors (calibration=both in the same place, make them yield same T)
+float temperatureDeltas[2]={1.35,-0.6}; // additive adjustments to the sensors (calibration=both in the same place, make them yield same T)
 const float digitalTempDelta=-1.6; // additive adjustment to the digital temperature sensor
 
 #define NUM_MEASUREMENTS (6)
